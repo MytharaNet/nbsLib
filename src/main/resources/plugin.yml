@@ -1,0 +1,4 @@
+name: nbsLib
+version: '${version}'
+main: net.mythara.nbslib.NbsLib
+api-version: '1.21'
