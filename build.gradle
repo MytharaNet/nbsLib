@@ -22,11 +22,15 @@ repositories {
 publishing {
     repositories {
         maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/MytharaNet/nbsLib")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            name = "Forgejo"
+            url = uri("https://git.mythara.net/api/packages/APIs/maven")
+            credentials(HttpHeaderCredentials) {
+                name = "Authorization"
+                value = "token " + project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+
+            authentication {
+                header(HttpHeaderAuthentication)
             }
         }
     }
