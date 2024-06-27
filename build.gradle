@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'io.freefair.lombok' version '8.6'
     id 'maven-publish'
+    id "org.sonarqube" version "5.0.0.4638"
 }
 
 group = 'net.mythara'
@@ -62,6 +63,13 @@ tasks.withType(JavaCompile).configureEach {
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
         options.release.set(targetJavaVersion)
     }
+}
+
+sonar {
+  properties {
+    property "sonar.projectKey", "nbsLib"
+    property "sonar.projectName", "nbsLib"
+  }
 }
 
 processResources {
